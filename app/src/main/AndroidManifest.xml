@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.lcc.acountingbooks">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/accountnote"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/buttonshape_add_infomation"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".account_add"
+            android:label="新增消費明細"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".calendar_main"
+            android:label="行事曆"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".account_menu"
+            android:label="記帳本"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".account_update"
+            android:label="更新與刪除消費明細"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".account_setting"
+            android:label="各項設定"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".account_setting_creditcard"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".account_setting_incomepay"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".account_paychart" />
+        <activity android:name=".Add_New_NoteActivity" />
+        <activity
+            android:name=".account_information_list"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".account_IncomeChart"
+            android:screenOrientation="portrait"/>
+    </application>
+
+</manifest>

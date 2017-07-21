@@ -1,0 +1,126 @@
+<resources>
+    <string name="app_name">行動帳簿</string>
+
+    //Accounting Note用的字串
+    <string name="expense_date">請點此處設定消費日期</string>
+    <string name="expense">金額：</string>
+    <string name="dollar">元</string>
+    <string name="month">月</string>
+    <string name="Slash">/</string>
+    <string name="money">請輸入金額</string>
+    <string name="add_info">新增記錄</string>
+    <string name="Expense_info">請輸入消費資訊</string>
+    <string name="clear">清除</string>
+    <string name="send">確定</string>
+    <string name="income">收入</string>
+    <string name="pay">支出</string>
+    <string name="all_details">全部明細</string>
+    <string name="all">全部</string>
+    <string name="detail">明細</string>
+    <string name="dash">至</string>
+    <string name="KeepWriteNextInfo">繼續儲存下一筆記錄</string>
+    <string name="search_condition_month">請輸入搜索之月份：</string>
+    <string name="search_condition_year">請輸入搜索之年份：</string>
+    <string name="limit">月份範圍請輸入 1 到 12</string>
+    <string name="enterYear">不輸入則搜索今年資料</string>
+    <string name="enterMonth">不輸入則搜索全月資料</string>
+    <string name="lastMonth">上個月</string>
+    <string name="nextMonth">下個月</string>
+    <string name="update">更新</string>
+    <string name="exit">離開</string>
+    <string name="searchFor">搜尋到</string>
+    <string name="piecesOfInformation">筆資料</string>
+    <string name="notData">沒有搜尋到資料</string>
+    <string name="year">年</string>
+    <string name="delete">刪除</string>
+    <string name="updateExpense">修改金額：</string>
+    <string name="updateInfo">修改內容：</string>
+    <string name="dateRemind">↘點擊日期可重新設定消費日↙</string>
+    <string name="noDate">請設定日期！</string>
+    <string name="noIncomePay">請設定收入或支出！</string>
+    <string name="noExpense">請輸入金額！</string>
+    <string name="BeforeUpdating"><u>修改前</u>：</string>
+    <string name="Updated"><u>修改後</u>：</string>
+    <string name="ok">OK</string>
+    <string name="setSerachCondition">搜尋資料</string>
+    <string name="confirmMessage">確認訊息</string>
+    <string name="confirm">確定</string>
+    <string name="cancel">取消</string>
+    <string name="confirmInfo">刪除後資料將無法恢復，請確認是否刪除！</string>
+    <string name="cash">現金</string>
+    <string name="creditCard">現用卡</string>
+    <string name="Remittance">匯款</string>
+    <string name="noPaymentMethods">請設定支付方式現金、匯款或信用卡！</string>
+    <string name="infoOff">OFF</string>
+    <string name="infoOn">ON</string>
+    <string name="amount_of_money">設定金額</string>
+    <string name="enterSettinItem">輸入自定品項</string>
+    <string name="settingCreditCardItem">自訂信用卡項目(最多十張卡)</string>
+    <string name="settingCreditCardQuota">自訂信用卡警示額度訊息</string>
+    <string name="return_default_massage">載入預設後更改資料將無法復原，請確認是否載入</string>
+    <string name="all_setting">各項設定</string>
+    <string name="date_analysis">資料分析</string>
+    <string name="creditcard_check_info">注意！若沒儲存此次設定資料將不存在，請確認是否已儲存資料！</string>
+    <string name="infomation_menu">各類資訊</string>
+    <string name="thisYearTotalIncome">收入總額：</string>
+    <string name="thisYearTotal">本年度總結：</string>
+    <string name="thisYearTotalPay">支出總額：</string>
+    <string name="swipe">已刷：</string>
+    <string name="setup">警示金額：</string>
+    <string name="enter_info">請輸入內容</string>
+    <string name="date_seved">資料已儲存</string>
+    <string name="CreditCard_Info_Title">本月信用卡消費警示訊息</string>
+    <string name="one">請輸入1-12月</string>
+
+    //Accounting Note用的字串陣列
+    <string-array name="expense_item">
+        <item>飲食</item>
+        <item>服飾</item>
+        <item>房租</item>
+        <item>交通</item>
+        <item>娛樂</item>
+        <item>其他</item>
+    </string-array>
+
+    <string-array name="income_item">
+        <item>薪資</item>
+        <item>股票</item>
+        <item>基金</item>
+        <item>獎金</item>
+    </string-array>
+
+    <string-array name="selectCreditCard">
+        <item>玉山VISA卡</item>
+        <item>國泰COSTCO聯名卡</item>
+        <item>花旗VISA卡</item>
+        <item>台新燦坤聯名卡</item>
+    </string-array>
+
+    <string-array name="month">
+        <item>全部</item>
+        <item>1月</item>
+        <item>2月</item>
+        <item>3月</item>
+        <item>4月</item>
+        <item>5月</item>
+        <item>6月</item>
+        <item>7月</item>
+        <item>8月</item>
+        <item>9月</item>
+        <item>10月</item>
+        <item>11月</item>
+        <item>12月</item>
+    </string-array>
+
+    <string-array name="IP">
+        <item>全部</item>
+        <item>收入</item>
+        <item>支出</item>
+    </string-array>
+
+    <string-array name="income_pay">
+        <item>全部</item>
+        <item><font color="#ff33b5e5">收入</font></item>
+        <item><font color="#bbff1500">支出</font></item>
+    </string-array>
+</resources>
