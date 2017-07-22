@@ -10,23 +10,23 @@
         android:id="@+id/space1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:layout_constraintHorizontal_bias="0.1" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Space
         android:id="@+id/space2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:layout_constraintHorizontal_bias="0.9" />
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/SearchLayout"
@@ -154,22 +154,23 @@
             android:id="@+id/txt2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
             android:layout_weight="1"
             android:text="搜索年份"
             android:textSize="16sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rGupRange"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp" />
+            app:layout_constraintTop_toBottomOf="@+id/rGupRange" />
 
         <EditText
             android:id="@+id/edtSearchYear1"
             android:layout_width="110dp"
             android:layout_height="38dp"
             android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
             android:layout_marginTop="0dp"
             android:ems="10"
             android:gravity="center"
@@ -177,27 +178,26 @@
             android:inputType="number"
             android:maxLength="4"
             android:textSize="14sp"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt2"
-            android:layout_marginRight="16dp"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintHorizontal_bias="0.5" />
+            app:layout_constraintTop_toBottomOf="@+id/txt2" />
 
         <TextView
             android:id="@+id/txt4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="0dp"
             android:layout_weight="1"
             android:text="搜索月份"
             android:textSize="16sp"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="0dp"
             app:layout_constraintTop_toBottomOf="@+id/edtSearchYear1" />
 
         <EditText
@@ -221,16 +221,16 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginBottom="0dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="0dp"
             android:gravity="center"
             android:text="至"
             app:layout_constraintBottom_toBottomOf="@+id/edtSearchMonth1"
-            app:layout_constraintTop_toTopOf="@+id/edtSearchMonth1"
-            android:layout_marginTop="0dp"
-            app:layout_constraintVertical_bias="0.0"
-            android:layout_marginLeft="8dp"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginRight="8dp"
-            app:layout_constraintRight_toRightOf="parent" />
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/edtSearchMonth1"
+            app:layout_constraintVertical_bias="0.0" />
 
         <EditText
             android:id="@+id/edtSearchMonth2"
@@ -252,8 +252,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:checkedButton="@+id/rBtnSearchA"
             android:orientation="horizontal"
@@ -261,9 +263,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edtSearchMonth1"
-            app:layout_constraintVertical_bias="0.0"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp">
+            app:layout_constraintVertical_bias="0.0">
 
             <RadioButton
                 android:id="@+id/rBtnSearchI"
@@ -293,6 +293,7 @@
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -306,79 +307,78 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/SearchLayout"
-        app:layout_constraintVertical_bias="0.0"
-        android:id="@+id/constraintLayout4">
+        app:layout_constraintVertical_bias="0.0">
 
         <ImageButton
             android:id="@+id/imageButton"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:layout_marginLeft="0dp"
             android:background="@color/income"
             android:onClick="lastMonth"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:srcCompat="@drawable/ic_left"
-            tools:layout_editor_absoluteY="0dp"
-            android:layout_marginLeft="0dp"
-            app:layout_constraintLeft_toLeftOf="parent" />
+            tools:layout_editor_absoluteY="0dp" />
 
         <ImageButton
             android:id="@+id/imageButton2"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:layout_marginRight="0dp"
             android:background="@color/income"
             android:onClick="nextMonth"
+            app:layout_constraintRight_toRightOf="parent"
             app:srcCompat="@drawable/ic_right"
-            tools:layout_editor_absoluteY="0dp"
-            android:layout_marginRight="0dp"
-            app:layout_constraintRight_toRightOf="parent" />
+            tools:layout_editor_absoluteY="0dp" />
 
         <ImageButton
             android:id="@+id/imageButton3"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:layout_marginTop="0dp"
             android:background="@color/income"
             android:onClick="search"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_search"
-            android:layout_marginLeft="8dp"
+            app:layout_constraintHorizontal_bias="0.4"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginRight="8dp"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintHorizontal_bias="0.4" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_search" />
 
         <ImageButton
             android:id="@+id/imageButton4"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginBottom="0dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="0dp"
             android:background="@color/income"
             android:onClick="add"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_plus_black_symbol"
-            android:layout_marginLeft="8dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintHorizontal_bias="0.6" />
+            app:srcCompat="@drawable/ic_plus_black_symbol" />
 
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout3"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:id="@+id/constraintLayout3"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
 
         <TextView
@@ -390,9 +390,9 @@
             android:text="全部"
             android:textColor="@color/common_google_signin_btn_text_dark_default"
             android:textSize="18sp"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ScrollView
             android:layout_width="0dp"
