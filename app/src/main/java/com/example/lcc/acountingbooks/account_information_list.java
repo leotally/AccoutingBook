@@ -40,13 +40,12 @@ public class account_information_list extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.account_information_list);
+        toast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
         getSupportActionBar().hide();
         myFindView();
         getSystemDate();
         FistView();
         getAllDate();
-
-        toast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
     }
 
     protected void onRestart(){
@@ -98,13 +97,13 @@ public class account_information_list extends AppCompatActivity {
                 expense_data,
                 new int[]{R.id.year, R.id.month, R.id.day, R.id.incomepay, R.id.item, R.id.paymentMethods, R.id.money, R.id.info});
         mLvInfo.setAdapter(adapter);    //以ListView秀出Adapter內的資料
-        myToast();
         mTxtInfoDate.setText(getString(R.string.all_details));
+        myToast();
     }
 
     //顯示搜尋筆數的訊息
     public void myToast() { //顯示搜尋到的筆數
-        toast = Toast.makeText(this, getString(R.string.searchFor) + cur.getCount() + getString(R.string.piecesOfInformation), Toast.LENGTH_SHORT);
+        toast.setText(getString(R.string.searchFor) + cur.getCount() + getString(R.string.piecesOfInformation));
         toast.show();
     }
 
@@ -124,6 +123,7 @@ public class account_information_list extends AppCompatActivity {
         }
         SingleSearch();
         adapter.changeCursor(cur);
+        myToast();
     }
 
     //按下右箭頭 搜尋上個月資料
@@ -142,6 +142,7 @@ public class account_information_list extends AppCompatActivity {
         }
         SingleSearch();
         adapter.changeCursor(cur);
+        myToast();
     }
 
     //取得範圍資料變更顯示資訊
@@ -218,6 +219,7 @@ public class account_information_list extends AppCompatActivity {
                 break;
         }
         mSearchLayout.setVisibility(View.GONE);
+        myToast();
     }
 
     private void SingleSearch(){

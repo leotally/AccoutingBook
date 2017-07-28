@@ -32,6 +32,7 @@ dependencies {
 
 dependencies {
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
+    compile 'com.github.MagicMashRoom:SuperCalendar:v1.3.1'
 }
 dependencies {
     compile 'com.android.support.constraint:constraint-layout:+'

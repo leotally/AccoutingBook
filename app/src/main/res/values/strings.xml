@@ -63,7 +63,7 @@
     <string name="creditcard_check_info">注意！若沒儲存此次設定資料將不存在，請確認是否已儲存資料！</string>
     <string name="infomation_menu">各類資訊</string>
     <string name="thisYearTotalIncome">收入總額：</string>
-    <string name="thisYearTotal">本年度總結：</string>
+    <string name="thisYearTotal">年度總結：</string>
     <string name="thisYearTotalPay">支出總額：</string>
     <string name="swipe">已刷：</string>
     <string name="setup">警示金額：</string>

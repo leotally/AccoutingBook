@@ -71,6 +71,7 @@ public class account_IncomeChart extends Activity {
     }
 
     public void setChart(){
+        total = 0;
         for(int i=0;i<money.length;i++){
             total += money[i];
         }

@@ -19,7 +19,6 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="0dp"
             android:gravity="center_vertical"
-            android:text="支付"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"

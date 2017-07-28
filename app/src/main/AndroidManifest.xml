@@ -27,11 +27,6 @@
             android:label="行事曆"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".account_menu"
-            android:label="記帳本"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".account_update"
             android:label="更新與刪除消費明細"
             android:screenOrientation="portrait" />

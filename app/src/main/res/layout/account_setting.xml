@@ -8,34 +8,19 @@
     tools:context="com.example.lcc.acountingbooks.account_setting">
 
     <Button
-        android:id="@+id/btnIndexInfo"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/buttonshape"
-        android:onClick="infomationSetting"
-        android:text="首頁資訊設定"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
         android:id="@+id/btnIncomePayItem"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
         android:background="@drawable/buttonshape"
         android:onClick="IncomePayItemSetting"
         android:text="自訂收支項目"
         android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnIndexInfo" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp" />
 
     <Button
         android:id="@+id/btnCreditCard"
