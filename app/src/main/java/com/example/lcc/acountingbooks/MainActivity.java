@@ -3,6 +3,7 @@ package com.example.lcc.acountingbooks;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -53,6 +54,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ScrollView mInfoOfDay;
     ListView mLvOfDay;
 
+    ImageView mIvRed,mIvGreen,mIvYellow;
+    TextView mExpenseQuotaMonth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,9 +79,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         thisMonthTotal();
         //----顯示本年度當月收入、支出與總合的方法----//
 
-        //--顯本每日消費資訊--//
+        //----顯本每日消費資訊----//
         PayOfDay();
-        //--顯本每日消費資訊--//
+        //----顯本每日消費資訊----//
+
+        //----顯示每月消費警示----//
+        ExpenseQuotaOfMonth();
+        //----顯示每月消費警示----//
     }
 
     private void myFindView() {
@@ -93,6 +101,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mNoConsumption = (TextView) findViewById(R.id.noConsumption);
         mInfoOfDay = (ScrollView) findViewById(R.id.infoOfDay);
         mLvOfDay = (ListView) findViewById(R.id.LvOfDay);
+
+        //---以下為每月消費警示所用連結
+        mIvRed = (ImageView) findViewById(R.id.red);
+        mIvGreen = (ImageView) findViewById(R.id.green);
+        mIvYellow = (ImageView) findViewById(R.id.yellow);
+        mExpenseQuotaMonth = (TextView) findViewById(R.id.txtExpenseQuotaMonth);
 
         //----以下為信用卡提示所用連結
         //-----第一張卡(依欄位順序)
@@ -846,6 +860,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     cursor1, Day_Information, new int[]{R.id.dItem,R.id.dMoney,R.id.dInfo});
             mLvOfDay.setAdapter(adapter);
         }
+    }
+
+    //顯示每月消費警示的方法
+    private void ExpenseQuotaOfMonth(){
+        cursor = helper.getReadableDatabase().query(TB_NAME,new String[]{"SUM(money)"},
+                "year = ? and month = ? and income = ? ",new String[]{""+c.get(Calendar.YEAR),
+                ""+(c.get(Calendar.MONTH)+1),getString(R.string.pay)},"month",null,null);
+        cursor.moveToFirst();
+        Long ExpenseQuota;
+        if (cursor.getCount() == 0){
+            ExpenseQuota = 0L;
+        } else {
+            ExpenseQuota = cursor.getLong(0);
+        }
+
+        if ((10000L - ExpenseQuota) * 0.01 < 20 ){
+            mIvYellow.setVisibility(View.GONE);
+            mIvGreen.setVisibility(View.GONE);
+            mIvRed.setVisibility(View.VISIBLE);
+        } else if ((10000L - ExpenseQuota) * 0.01 < 50 ){
+            mIvYellow.setVisibility(View.VISIBLE);
+            mIvGreen.setVisibility(View.GONE);
+            mIvRed.setVisibility(View.GONE);
+        } else {
+            mIvYellow.setVisibility(View.GONE);
+            mIvGreen.setVisibility(View.VISIBLE);
+            mIvRed.setVisibility(View.GONE);
+        }
+        mExpenseQuotaMonth.setText(""+(10000L - ExpenseQuota));
     }
 
     //以下為跳轉頁面
