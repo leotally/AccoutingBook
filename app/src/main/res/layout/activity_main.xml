@@ -34,7 +34,7 @@
         android:layout_marginEnd="8dp"
         android:id="@+id/scrollView2"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonLayout">
+        app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -152,7 +152,7 @@
                         android:id="@+id/textView8"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="本月總結："
+                        android:text="@string/thisMonthTotal"
                         android:textColor="@android:color/background_dark"
                         android:textSize="16sp"
                         app:layout_constraintLeft_toLeftOf="parent"
@@ -173,7 +173,7 @@
                         android:id="@+id/textView5"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="收入總額："
+                        android:text="@string/thisMonthIncomeTotal"
                         android:textColor="@color/income"
                         android:textSize="14sp"
                         app:layout_constraintLeft_toLeftOf="@+id/textView8"
@@ -194,7 +194,7 @@
                         android:id="@+id/textView4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="支出總額："
+                        android:text="@string/thisMonthPayTotal"
                         android:textColor="@color/pay"
                         android:textSize="14sp"
                         app:layout_constraintLeft_toLeftOf="parent"
@@ -224,77 +224,68 @@
                     android:id="@+id/yellow"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_marginBottom="0dp"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginTop="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0"
-                    app:srcCompat="@drawable/b3" />
+                    app:srcCompat="@drawable/b3"
+                    android:layout_marginStart="8dp" />
 
                 <ImageView
                     android:id="@+id/red"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_marginBottom="0dp"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginTop="0dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/green"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0"
-                    app:srcCompat="@drawable/b2" />
+                    app:srcCompat="@drawable/b2"
+                    android:layout_marginStart="8dp" />
 
                 <ImageView
                     android:id="@+id/green"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_marginBottom="0dp"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginTop="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0"
-                    app:srcCompat="@drawable/b1" />
+                    app:srcCompat="@drawable/b1"
+                    android:layout_marginStart="8dp" />
 
                 <TextView
                     android:id="@+id/textView21"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="0dp"
+                    android:layout_height="0dp"
                     android:layout_marginLeft="50dp"
-                    android:layout_marginTop="0dp"
                     android:gravity="center_vertical"
-                    android:text="每月消費警示"
+                    android:text="@string/monthExpensequota"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="50dp" />
 
                 <TextView
                     android:id="@+id/textView23"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="0dp"
+                    android:layout_height="0dp"
                     android:layout_marginLeft="32dp"
-                    android:layout_marginTop="0dp"
                     android:gravity="center_vertical"
-                    android:text="餘額$："
+                    android:text="@string/Balance"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toRightOf="@+id/textView21"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="32dp" />
 
                 <TextView
                     android:id="@+id/txtExpenseQuotaMonth"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="0dp"
-                    android:layout_marginLeft="0dp"
-                    android:layout_marginRight="0dp"
-                    android:layout_marginTop="0dp"
+                    android:layout_height="0dp"
                     android:gravity="center_vertical"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -329,7 +320,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:paddingLeft="4dp"
-                        android:text="每日消費明細"
+                        android:text="@string/everydayInfo"
                         android:textColor="@color/common_google_signin_btn_text_dark_default"
                         android:textSize="18sp" />
 
@@ -360,7 +351,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:gravity="center"
-                    android:text="本日尚無消費記錄"
+                    android:text="@string/consumptionNotYet"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -2380,99 +2371,104 @@
         </LinearLayout>
     </ScrollView>
 
-    <LinearLayout
-        android:id="@+id/buttonLayout"
-        android:layout_width="wrap_content"
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintRight_toRightOf="parent">
 
-        <Button
-            android:id="@+id/btnAddNewInfo"
-            android:layout_width="60dp"
-            android:layout_height="70dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:background="@drawable/buttonshape_add_infomation"
-            android:drawableTop="@drawable/icon_add"
-            android:gravity="top|center"
-            android:onClick="AddInfo"
-            android:text="@string/add_info"
-            android:textColor="@color/common_google_signin_btn_text_dark_default"
-            android:textSize="11sp"
-            android:textStyle="italic" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btnInfoList"
-            android:layout_width="60dp"
-            android:layout_height="70dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:background="@drawable/buttonshape_info_list"
-            android:drawableTop="@drawable/icon_accountbook"
-            android:gravity="top|center"
-            android:onClick="SearchInfo"
-            android:text="查詢帳本"
-            android:textColor="@color/common_google_signin_btn_text_dark_default"
-            android:textSize="11sp"
-            android:textStyle="italic" />
+            <Button
+                android:id="@+id/btnAddNewInfo"
+                android:layout_width="60dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/buttonshape_add_infomation"
+                android:drawableTop="@drawable/icon_add"
+                android:gravity="top|center"
+                android:onClick="AddInfo"
+                android:text="@string/add_info"
+                android:textColor="@color/common_google_signin_btn_text_dark_default"
+                android:textSize="11sp"
+                android:textStyle="italic" />
 
-        <Button
-            android:id="@+id/btnDateAnalysis"
-            android:layout_width="60dp"
-            android:layout_height="70dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:background="@drawable/buttonshape_date_analysis"
-            android:drawableTop="@drawable/icon_date_analysis"
-            android:gravity="top|center"
-            android:onClick="Analysis"
-            android:text="@string/date_analysis"
-            android:textColor="@color/common_google_signin_btn_text_dark_default"
-            android:textSize="11sp"
-            android:textStyle="italic" />
+            <Button
+                android:id="@+id/btnInfoList"
+                android:layout_width="60dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/buttonshape_info_list"
+                android:drawableTop="@drawable/icon_accountbook"
+                android:gravity="top|center"
+                android:onClick="SearchInfo"
+                android:text="@string/searchInfo"
+                android:textColor="@color/common_google_signin_btn_text_dark_default"
+                android:textSize="11sp"
+                android:textStyle="italic" />
 
-        <Button
-            android:id="@+id/btnAllSetting"
-            android:layout_width="60dp"
-            android:layout_height="70dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:background="@drawable/buttonshape_all_setting"
-            android:drawableTop="@drawable/icon_setting"
-            android:gravity="top|center"
-            android:onClick="AllSetting"
-            android:text="@string/all_setting"
-            android:textColor="@color/common_google_signin_btn_text_dark_default"
-            android:textSize="11sp"
-            android:textStyle="italic" />
+            <Button
+                android:id="@+id/btnDateAnalysis"
+                android:layout_width="60dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/buttonshape_date_analysis"
+                android:drawableTop="@drawable/icon_date_analysis"
+                android:gravity="top|center"
+                android:onClick="Analysis"
+                android:text="@string/date_analysis"
+                android:textColor="@color/common_google_signin_btn_text_dark_default"
+                android:textSize="11sp"
+                android:textStyle="italic" />
 
-        <Button
-            android:id="@+id/btnCalender"
-            android:layout_width="60dp"
-            android:layout_height="70dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_weight="1"
-            android:background="@drawable/buttonshape_calender"
-            android:drawableTop="@drawable/icon_calender"
-            android:gravity="top|center"
-            android:onClick="Calender"
-            android:text="行事曆"
-            android:textColor="@color/common_google_signin_btn_text_dark_default"
-            android:textSize="11sp"
-            android:textStyle="italic" />
+            <Button
+                android:id="@+id/btnAllSetting"
+                android:layout_width="60dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/buttonshape_all_setting"
+                android:drawableTop="@drawable/icon_setting"
+                android:gravity="top|center"
+                android:onClick="AllSetting"
+                android:text="@string/all_setting"
+                android:textColor="@color/common_google_signin_btn_text_dark_default"
+                android:textSize="11sp"
+                android:textStyle="italic" />
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/btnCalender"
+                android:layout_width="60dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/buttonshape_calender"
+                android:drawableTop="@drawable/icon_calender"
+                android:gravity="top|center"
+                android:onClick="Calender"
+                android:text="@string/Calendar"
+                android:textColor="@color/common_google_signin_btn_text_dark_default"
+                android:textSize="11sp"
+                android:textStyle="italic" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
 
 </android.support.constraint.ConstraintLayout>

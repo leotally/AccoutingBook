@@ -33,9 +33,9 @@ import java.util.Locale;
 
 public class account_paychart extends Activity {
 
-    int[] money; //= {12000,20000,30450,40523,4563,78951};//各項的總計數字
-    String[] item; //= {"飲食","服飾","房租","交通","娛樂","其它"};//getResources().getStringArray(R.array.expense_item);//項目名稱
-    ArrayList<Integer> color = new ArrayList<>();//調色盤
+    int[] money; //各項的總計數字
+    String[] item; //項目名稱
+    ArrayList color = new ArrayList();//調色盤
     ConstraintLayout layout;
     Toast toast;
     int total;//顯示總金額
@@ -44,18 +44,18 @@ public class account_paychart extends Activity {
     Cursor cur;
     TextView txvdate;//標示當前圖表的資料日期
     Calendar calendar = Calendar.getInstance();
-    int year,month,day;//日期用
-
+    //int year,month,day;//日期用
+    String[] chartcolor = {"#c30000E3","#c3921AFF","#c3FF8000","#c3FF2D2D","#c300CACA","#c3FF8000","#c37373B9","#c3A6A600"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.account_pay_chart);
-        txvdate = (TextView)findViewById(R.id.txvdate);
+        txvdate = (TextView)findViewById(R.id.txvPaydate);
         // layout = (ConstraintLayout)findViewById(R.id.mainLayout);
 
         toast = Toast.makeText(this,"",Toast.LENGTH_SHORT);
-        getDate();setChart();//設定圖表物件
+        getDate();//設定圖表物件
 
     }
     public void setQuery(View v){//查詢某月的支出圖表資料
@@ -65,8 +65,6 @@ public class account_paychart extends Activity {
                 calendar.get(Calendar.MONTH),           //從calendar物件取得目前的月
                 calendar.get(Calendar.DAY_OF_MONTH))   //從calendar物件取得目前的日
                 .show();
-
-
     }
 
     private DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
@@ -91,7 +89,7 @@ public class account_paychart extends Activity {
                 cur.moveToFirst();
                 money[j]=cur.getInt(0);
             }
-            txvdate.setText(month+1+"月");
+            txvdate.setText(year+getString(R.string.year)+(month+1)+getString(R.string.month));
             setChart();//重新設置圖表
         }
     };
@@ -108,12 +106,15 @@ public class account_paychart extends Activity {
         }
         txvdate.setText("");
         money = new int[item.length];//設定金額陣列數量與項目數量同步
+        int z=0;
         for(int j=0;j<item.length;j++){
             cur = helper.getReadableDatabase().query(
                     TB_NAME,new String[]{"SUM(money)"},"item=?",new String[]{item[j]},"item",null,null);
             cur.moveToFirst();
             money[j]= cur.getInt(0);
         }
+        txvdate.setText(R.string.all_date);
+        setChart();
     }
 
     private void setChart() {
@@ -126,9 +127,11 @@ public class account_paychart extends Activity {
         for(int i=0;i<money.length;i++){
             pieEntries.add(new PieEntry(money[i],item[i]));
         }
-        for(int c:ColorTemplate.JOYFUL_COLORS){color.add(c);}
-        for(int c:ColorTemplate.COLORFUL_COLORS){color.add(c);}
-        for(int c:ColorTemplate.LIBERTY_COLORS){color.add(c);}
+
+        for(String c:chartcolor){color.add(Color.parseColor(c));}
+        //for(int c:ColorTemplate.JOYFUL_COLORS){color.add(c);}
+        //for(int c:ColorTemplate.COLORFUL_COLORS){color.add(c);}
+        //for(int c:ColorTemplate.LIBERTY_COLORS){color.add(c);}
 
 
         PieDataSet dataset = new PieDataSet(pieEntries,"");//放入自定LIST，圖表的名稱
@@ -136,6 +139,7 @@ public class account_paychart extends Activity {
         dataset.setColors(color);//自定圖表區塊顏色，放入陣列
         dataset.setSliceSpace(4f);//區塊間的間隔
         dataset.setSelectionShift(16f);//點擊後的突出程度
+
 
 
         PieData data = new PieData(dataset);//建立PieData物件存取data資料
@@ -149,7 +153,7 @@ public class account_paychart extends Activity {
         chart.setData(data);//將設定好的PieData置入
         //設置屬性
         chart.setUsePercentValues(true);
-        chart.animateX(2500);
+        chart.animateX(2000);
         chart.setRotationEnabled(true);//可轉動餅圖
         chart.setRotationAngle(5);//鬆手後旋轉的角度
         chart.setHoleRadius(30);//設定中間空心大小
@@ -172,7 +176,7 @@ public class account_paychart extends Activity {
         legend.setDirection(Legend.LegendDirection.LEFT_TO_RIGHT);
         //設定字體顏色及圖塊樣式(預設為方塊)
         legend.setTextSize(20f);
-        legend.setTextColor(Color.WHITE);
+        legend.setTextColor(Color.parseColor("#5B5B5B"));
         legend.setForm(Legend.LegendForm.CIRCLE);
 
         chart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {

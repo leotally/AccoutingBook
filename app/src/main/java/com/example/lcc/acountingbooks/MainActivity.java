@@ -19,11 +19,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     static final String TB_NAME = "AccountNote";    //資料表名稱
     static final String CreditCardName = "CreditCard";    //信用卡項目資料檔名稱
+    static final String ExpenseQuotaName = "ExpenseQuota";  //每月警示資料檔名稱
+    static final String IndexViewName = "IndexView";    //首頁樣式資料檔名稱
     static final String [] Day_Information = new String []{"item","money","info"};
     TextView mThisYearPay, mThisYearIncome, mThisYearTotalView,
             mThisMonthPay, mThisMonthIncome,mThisMonthTotalView;
     Long mThisYearTotalPay, mThisYearTotalIncome, mThisYearTotal,
             mThisMonthTotalPay,mThisMonthTotalIncome,mThisMonthTotal;
+    String SMS,EQS,PDS,CCS;
 
     MySQLiteOpenHelper helper;
     Cursor cursor,cursor1;
@@ -57,6 +60,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageView mIvRed,mIvGreen,mIvYellow;
     TextView mExpenseQuotaMonth;
 
+    android.support.constraint.ConstraintLayout mSumOfMoney,mExpenseQuota,mPayOfDay,mCreditCard;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +91,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //----顯示每月消費警示----//
         ExpenseQuotaOfMonth();
         //----顯示每月消費警示----//
+
+        //----首頁欄位顯示樣式----//
+        IndexView();
+        //----首頁欄位顯示樣式----//
     }
 
     private void myFindView() {
@@ -95,6 +104,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mThisMonthPay = (TextView) findViewById(R.id.txtThisMonthPay);
         mThisMonthIncome = (TextView) findViewById(R.id.txtThisMonthIncome);
         mThisMonthTotalView = (TextView) findViewById(R.id.txtThisMonthTatal);
+
+        //--以下為首頁顯示欄位所用連結
+        mSumOfMoney = (android.support.constraint.ConstraintLayout) findViewById(R.id.SumOfMoney);
+        mExpenseQuota = (android.support.constraint.ConstraintLayout) findViewById(R.id.ExpenseQuota);
+        mPayOfDay = (android.support.constraint.ConstraintLayout) findViewById(R.id.PayOfDay);
+        mCreditCard = (android.support.constraint.ConstraintLayout) findViewById(R.id.CreditCard);
 
         //--以下為每日消費資訊所用連結
         mMoneyOfDay = (TextView) findViewById(R.id.MoneyOfDay);
@@ -471,6 +486,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         thisMonthTotal();
 
         PayOfDay(); //更新每日消費資訊
+
+        ExpenseQuotaOfMonth();//更新每月警示資訊
+
+        IndexView();//更新首頁顯示欄位
 
         SecondInView(); //使用第二次進入畫面的方法關閉與清除不使用的Layout，並載入資料
     }
@@ -864,6 +883,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     //顯示每月消費警示的方法
     private void ExpenseQuotaOfMonth(){
+        SharedPreferences getDate = getSharedPreferences(ExpenseQuotaName, MODE_PRIVATE);
+        Long EQ; int YP,RP;
+        EQ = getDate.getLong("ExpenseQuota",10000L);
+        YP = getDate.getInt("yellowPercent",50);
+        RP = getDate.getInt("RedPercent",20);
         cursor = helper.getReadableDatabase().query(TB_NAME,new String[]{"SUM(money)"},
                 "year = ? and month = ? and income = ? ",new String[]{""+c.get(Calendar.YEAR),
                 ""+(c.get(Calendar.MONTH)+1),getString(R.string.pay)},"month",null,null);
@@ -875,11 +899,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             ExpenseQuota = cursor.getLong(0);
         }
 
-        if ((10000L - ExpenseQuota) * 0.01 < 20 ){
+        if ((EQ - ExpenseQuota) * 0.01 < RP ){
             mIvYellow.setVisibility(View.GONE);
             mIvGreen.setVisibility(View.GONE);
             mIvRed.setVisibility(View.VISIBLE);
-        } else if ((10000L - ExpenseQuota) * 0.01 < 50 ){
+        } else if ((EQ - ExpenseQuota) * 0.01 < YP ){
             mIvYellow.setVisibility(View.VISIBLE);
             mIvGreen.setVisibility(View.GONE);
             mIvRed.setVisibility(View.GONE);
@@ -888,7 +912,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             mIvGreen.setVisibility(View.VISIBLE);
             mIvRed.setVisibility(View.GONE);
         }
-        mExpenseQuotaMonth.setText(""+(10000L - ExpenseQuota));
+        mExpenseQuotaMonth.setText(""+(EQ - ExpenseQuota));
+    }
+
+    //顯示首頁欄位樣式的方法
+    private void IndexView(){
+        SharedPreferences getDate = getSharedPreferences(IndexViewName,MODE_PRIVATE);
+        SMS = getDate.getString("SMS","true");
+        EQS = getDate.getString("EQS","true");
+        PDS = getDate.getString("PDS","true");
+        CCS = getDate.getString("CCS","true");
+
+        if (SMS.length() == 4){
+            mSumOfMoney.setVisibility(View.VISIBLE);
+        } else {
+            mSumOfMoney.setVisibility(View.GONE);
+        }
+
+        if (EQS.length() == 4){
+            mExpenseQuota.setVisibility(View.VISIBLE);
+        } else {
+            mExpenseQuota.setVisibility(View.GONE);
+        }
+
+        if (PDS.length() == 4){
+            mPayOfDay.setVisibility(View.VISIBLE);
+        } else {
+            mPayOfDay.setVisibility(View.GONE);
+        }
+
+        if (CCS.length() == 4){
+            mCreditCard.setVisibility(View.VISIBLE);
+        } else {
+            mCreditCard.setVisibility(View.GONE);
+        }
     }
 
     //以下為跳轉頁面

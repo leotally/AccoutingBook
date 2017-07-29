@@ -16,6 +16,7 @@
     <string name="pay">支出</string>
     <string name="all_details">全部明細</string>
     <string name="all">全部</string>
+    <string name="all_date">全部資料</string>
     <string name="detail">明細</string>
     <string name="dash">至</string>
     <string name="KeepWriteNextInfo">繼續儲存下一筆記錄</string>
@@ -71,6 +72,26 @@
     <string name="date_seved">資料已儲存</string>
     <string name="CreditCard_Info_Title">本月信用卡消費警示訊息</string>
     <string name="one">請輸入1-12月</string>
+    <string name="totalincome">總收入：</string>
+    <string name="dateSaved">資料已儲存</string>
+    <string name="yellowLightRange">黃色警示值，請輸入1-99</string>
+    <string name="redLightRange">紅色警示值，請輸入1-99</string>
+    <string name="MonthExpenseQuota">設定每月消費警示功能</string>
+    <string name="balanceRatio">餘額比例 ＜</string>
+    <string name="yellowWarning">% 顯示黃色警示</string>
+    <string name="redWarning">% 顯示紅色警示</string>
+    <string name="thisMonthTotal">本月總結：</string>
+    <string name="thisMonthIncomeTotal">收入總額：</string>
+    <string name="thisMonthPayTotal">支出總額：</string>
+    <string name="monthExpensequota">每月消費警示</string>
+    <string name="Balance">餘額$：</string>
+    <string name="everydayInfo">每日消費明細</string>
+    <string name="consumptionNotYet">本日尚無消費記錄</string>
+    <string name="Calendar">行事曆</string>
+    <string name="searchInfo">查詢帳本</string>
+    <string name="save">儲存</string>
+    <string name="infoTrue">true</string>
+    <string name="infoFalse">false</string>
 
     //Accounting Note用的字串陣列
     <string-array name="expense_item">

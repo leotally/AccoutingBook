@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.lcc.acountingbooks.account_setting_ExpenseQuota">
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/MonthExpenseQuota"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical"
+        android:text="設定每月警示金額："
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/EQ"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView24" />
+
+    <EditText
+        android:id="@+id/EQ"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="0dp"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="number"
+        app:layout_constraintLeft_toRightOf="@+id/textView26"
+        app:layout_constraintRight_toLeftOf="@+id/textView27"
+        app:layout_constraintTop_toTopOf="@+id/textView26" />
+
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="0dp"
+        android:gravity="center_vertical"
+        android:text="@string/dollar"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/EQ"
+        app:layout_constraintTop_toTopOf="@+id/EQ"
+        app:layout_constraintVertical_bias="0.0"
+        android:layout_marginRight="32dp"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical"
+        android:text="@string/balanceRatio"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/yellowPercent"
+        app:layout_constraintTop_toBottomOf="@+id/textView26"
+        android:layout_marginLeft="12dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView
+        android:id="@+id/textView30"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center_vertical"
+        android:text="@string/balanceRatio"
+        android:textSize="18sp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView28"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/textView28"
+        app:layout_constraintBottom_toBottomOf="@+id/redPercent"
+        android:layout_marginBottom="0dp" />
+
+    <EditText
+        android:id="@+id/yellowPercent"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="0dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="1-99"
+        android:inputType="number"
+        android:maxLength="2"
+        app:layout_constraintLeft_toRightOf="@+id/textView28"
+        app:layout_constraintTop_toTopOf="@+id/textView28"
+        app:layout_constraintRight_toLeftOf="@+id/textView29"
+        android:layout_marginRight="8dp" />
+
+    <EditText
+        android:id="@+id/redPercent"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="1-99"
+        android:inputType="number"
+        android:maxLength="2"
+        app:layout_constraintLeft_toRightOf="@+id/textView30"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintTop_toTopOf="@+id/textView30"
+        android:layout_marginTop="0dp"
+        app:layout_constraintRight_toLeftOf="@+id/textView31"
+        android:layout_marginRight="8dp" />
+
+    <TextView
+        android:id="@+id/textView29"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="0dp"
+        android:gravity="center_vertical"
+        android:text="@string/yellowWarning"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/yellowPercent"
+        app:layout_constraintTop_toTopOf="@+id/yellowPercent"
+        app:layout_constraintRight_toLeftOf="@+id/imageView2"
+        android:layout_marginRight="16dp"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView31"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="0dp"
+        android:gravity="center_vertical"
+        android:text="@string/redWarning"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/redPercent"
+        app:layout_constraintTop_toTopOf="@+id/redPercent"
+        app:layout_constraintRight_toLeftOf="@+id/imageView3"
+        android:layout_marginRight="16dp"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:srcCompat="@drawable/b3"
+        app:layout_constraintTop_toTopOf="@+id/textView29"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView29"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="12dp"
+        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:srcCompat="@drawable/b2"
+        app:layout_constraintTop_toTopOf="@+id/textView31"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView31"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="12dp"
+        app:layout_constraintVertical_bias="0.333"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/background1"
+        android:onClick="save"
+        android:text="@string/save"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/redPercent" />
+</android.support.constraint.ConstraintLayout>

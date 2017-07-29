@@ -46,10 +46,14 @@
         <activity android:name=".Add_New_NoteActivity" />
         <activity
             android:name=".account_information_list"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".account_IncomeChart"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".account_setting_ExpenseQuota"
+            android:screenOrientation="portrait" />
+        <activity android:name=".account_setting_indexview"></activity>
     </application>
 
 </manifest>

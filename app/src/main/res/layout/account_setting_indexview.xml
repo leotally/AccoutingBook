@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.lcc.acountingbooks.account_setting_indexview">
+
+    <TextView
+        android:id="@+id/textView32"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:text="首頁各類資訊欄位顯示開關"
+        android:textSize="18sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Switch
+        android:id="@+id/SumOfMoneySwitch"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="16dp"
+        android:checked="true"
+        android:showText="true"
+        android:text="每年、月收支總計"
+        android:textOff="@string/infoOff"
+        android:textOn="@string/infoOn"
+        android:textSize="16sp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView32" />
+
+    <Switch
+        android:id="@+id/ExpenseQuotaSwitch"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="16dp"
+        android:checked="true"
+        android:showText="true"
+        android:text="每月消費金額警示"
+        android:textOff="@string/infoOff"
+        android:textOn="@string/infoOn"
+        android:textSize="16sp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/SumOfMoneySwitch"
+        app:layout_constraintRight_toRightOf="@+id/SumOfMoneySwitch"
+        app:layout_constraintTop_toBottomOf="@+id/SumOfMoneySwitch" />
+
+    <Switch
+        android:id="@+id/PayOfDaySwitch"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="16dp"
+        android:checked="true"
+        android:showText="true"
+        android:text="每日消費明細"
+        android:textOff="@string/infoOff"
+        android:textOn="@string/infoOn"
+        android:textSize="16sp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/ExpenseQuotaSwitch"
+        app:layout_constraintRight_toRightOf="@+id/ExpenseQuotaSwitch"
+        app:layout_constraintTop_toBottomOf="@+id/ExpenseQuotaSwitch" />
+
+    <Switch
+        android:id="@+id/CreditCardSwitch"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="16dp"
+        android:checked="true"
+        android:showText="true"
+        android:text="信用卡消費警示"
+        android:textOff="@string/infoOff"
+        android:textOn="@string/infoOn"
+        android:textSize="16sp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/PayOfDaySwitch"
+        app:layout_constraintRight_toRightOf="@+id/PayOfDaySwitch"
+        app:layout_constraintTop_toBottomOf="@+id/PayOfDaySwitch" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/background1"
+        android:onClick="save"
+        android:text="@string/save"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CreditCardSwitch" />
+</android.support.constraint.ConstraintLayout>

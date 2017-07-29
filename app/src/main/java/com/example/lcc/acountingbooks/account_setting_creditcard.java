@@ -46,8 +46,78 @@ public class account_setting_creditcard extends AppCompatActivity {
         myFindView();
         mBtnDeleteC.setEnabled(false);  //關閉刪除鈕
         mBtnUpdateC.setEnabled(false);  //關閉更新鈕
+        //建立儲存物件，但將檔案取名為 "CreditCard"
+        CreditCard = getSharedPreferences(CreditCardName, MODE_PRIVATE);
+        toast = Toast.makeText(this,"",Toast.LENGTH_SHORT);
 
-        CreditCard = getSharedPreferences(CreditCardName, MODE_PRIVATE);   //建立儲存物件，但將檔案取名為 "CreditCard"
+        LoadingDate();
+    }
+
+    //取得連結與監聽
+    private void myFindView() {
+        mEdtC1 = (EditText) findViewById(R.id.edtC1);
+        mEdtC2 = (EditText) findViewById(R.id.edtC2);
+        mEdtC3 = (EditText) findViewById(R.id.edtC3);
+        mEdtC4 = (EditText) findViewById(R.id.edtC4);
+        mEdtC5 = (EditText) findViewById(R.id.edtC5);
+        mEdtC6 = (EditText) findViewById(R.id.edtC6);
+        mEdtC7 = (EditText) findViewById(R.id.edtC7);
+        mEdtC8 = (EditText) findViewById(R.id.edtC8);
+        mEdtC9 = (EditText) findViewById(R.id.edtC9);
+        mEdtC10 = (EditText) findViewById(R.id.edtC10);
+        mEdtNewCreditCard = (EditText) findViewById(R.id.edtIncome);
+
+        mTxtC1 = (TextView) findViewById(R.id.txtViewC1);
+        mTxtC2 = (TextView) findViewById(R.id.txtViewC2);
+        mTxtC3 = (TextView) findViewById(R.id.txtViewC3);
+        mTxtC4 = (TextView) findViewById(R.id.txtViewC4);
+        mTxtC5 = (TextView) findViewById(R.id.txtViewC5);
+        mTxtC6 = (TextView) findViewById(R.id.txtViewC6);
+        mTxtC7 = (TextView) findViewById(R.id.txtViewC7);
+        mTxtC8 = (TextView) findViewById(R.id.txtViewC8);
+        mTxtC9 = (TextView) findViewById(R.id.txtViewC9);
+        mTxtC10 = (TextView) findViewById(R.id.txtViewC10);
+
+        mBtnAddC = (Button) findViewById(R.id.btnAddC);
+        mBtnDeleteC = (Button) findViewById(R.id.btnDeleteI);
+        mBtnDefaultC = (Button) findViewById(R.id.btnDefaultC);
+        mBtnUpdateC = (Button) findViewById(R.id.btnUpdateI);
+
+        mLyeoutC1 = (android.support.constraint.ConstraintLayout) findViewById(R.id.creditcard1);
+        mLyeoutC2 = (android.support.constraint.ConstraintLayout) findViewById(R.id.creditcard2);
+        mLyeoutC3 = (android.support.constraint.ConstraintLayout) findViewById(R.id.creditcard3);
+        mLyeoutC4 = (android.support.constraint.ConstraintLayout) findViewById(R.id.creditcard4);
+        mLyeoutC5 = (android.support.constraint.ConstraintLayout) findViewById(R.id.creditcard5);
+        mLyeoutC6 = (android.support.constraint.ConstraintLayout) findViewById(R.id.creditcard6);
+        mLyeoutC7 = (android.support.constraint.ConstraintLayout) findViewById(R.id.creditcard7);
+        mLyeoutC8 = (android.support.constraint.ConstraintLayout) findViewById(R.id.creditcard8);
+        mLyeoutC9 = (android.support.constraint.ConstraintLayout) findViewById(R.id.creditcard9);
+        mLyeoutC10 = (android.support.constraint.ConstraintLayout) findViewById(R.id.creditcard10);
+
+        mTBtnC1 = (ToggleButton) findViewById(R.id.tBtnC1);
+        mTBtnC2 = (ToggleButton) findViewById(R.id.tBtnC2);
+        mTBtnC3 = (ToggleButton) findViewById(R.id.tBtnC3);
+        mTBtnC4 = (ToggleButton) findViewById(R.id.tBtnC4);
+        mTBtnC5 = (ToggleButton) findViewById(R.id.tBtnC5);
+        mTBtnC6 = (ToggleButton) findViewById(R.id.tBtnC6);
+        mTBtnC7 = (ToggleButton) findViewById(R.id.tBtnC7);
+        mTBtnC8 = (ToggleButton) findViewById(R.id.tBtnC8);
+        mTBtnC9 = (ToggleButton) findViewById(R.id.tBtnC9);
+        mTBtnC10 = (ToggleButton) findViewById(R.id.tBtnC10);
+
+        mLvCreditCard = (ListView) findViewById(R.id.lvCreditCard);
+        mLvCreditCard.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override   //點選 ListView 清單的動作
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                index = i;  //取索引值
+                tBtnindex = i;  //取ToggleButton判斷式用的值
+                mEdtNewCreditCard.setText(((TextView) view).getText()); //取值放入edt
+                openAndCloseButton();   //改變 更新、與刪除鈕的功能
+            }
+        });
+    }
+
+    private void LoadingDate(){
         //建立從檔案 "CreditCard" 取得資料的物件
         SharedPreferences getDate = getSharedPreferences(CreditCardName, MODE_PRIVATE);
         int CreditCardKey = getDate.getInt("CreditCardKey", -1); //讀取檔案中 "載入次數"的數據
@@ -152,72 +222,6 @@ public class account_setting_creditcard extends AppCompatActivity {
             setCreditCardInfoLayoutVisible();   //依ListView的長度來打開設定資訊的Layout
             setListView(CreditCardList);    //載入ListView
         }
-
-        toast = Toast.makeText(this,"",Toast.LENGTH_SHORT);
-    }
-
-    //取得連結與監聽
-    private void myFindView() {
-        mEdtC1 = (EditText) findViewById(R.id.edtC1);
-        mEdtC2 = (EditText) findViewById(R.id.edtC2);
-        mEdtC3 = (EditText) findViewById(R.id.edtC3);
-        mEdtC4 = (EditText) findViewById(R.id.edtC4);
-        mEdtC5 = (EditText) findViewById(R.id.edtC5);
-        mEdtC6 = (EditText) findViewById(R.id.edtC6);
-        mEdtC7 = (EditText) findViewById(R.id.edtC7);
-        mEdtC8 = (EditText) findViewById(R.id.edtC8);
-        mEdtC9 = (EditText) findViewById(R.id.edtC9);
-        mEdtC10 = (EditText) findViewById(R.id.edtC10);
-        mEdtNewCreditCard = (EditText) findViewById(R.id.edtIncome);
-
-        mTxtC1 = (TextView) findViewById(R.id.txtViewC1);
-        mTxtC2 = (TextView) findViewById(R.id.txtViewC2);
-        mTxtC3 = (TextView) findViewById(R.id.txtViewC3);
-        mTxtC4 = (TextView) findViewById(R.id.txtViewC4);
-        mTxtC5 = (TextView) findViewById(R.id.txtViewC5);
-        mTxtC6 = (TextView) findViewById(R.id.txtViewC6);
-        mTxtC7 = (TextView) findViewById(R.id.txtViewC7);
-        mTxtC8 = (TextView) findViewById(R.id.txtViewC8);
-        mTxtC9 = (TextView) findViewById(R.id.txtViewC9);
-        mTxtC10 = (TextView) findViewById(R.id.txtViewC10);
-
-        mBtnAddC = (Button) findViewById(R.id.btnAddC);
-        mBtnDeleteC = (Button) findViewById(R.id.btnDeleteI);
-        mBtnDefaultC = (Button) findViewById(R.id.btnDefaultC);
-        mBtnUpdateC = (Button) findViewById(R.id.btnUpdateI);
-
-        mLyeoutC1 = (android.support.constraint.ConstraintLayout) findViewById(R.id.creditcard1);
-        mLyeoutC2 = (android.support.constraint.ConstraintLayout) findViewById(R.id.creditcard2);
-        mLyeoutC3 = (android.support.constraint.ConstraintLayout) findViewById(R.id.creditcard3);
-        mLyeoutC4 = (android.support.constraint.ConstraintLayout) findViewById(R.id.creditcard4);
-        mLyeoutC5 = (android.support.constraint.ConstraintLayout) findViewById(R.id.creditcard5);
-        mLyeoutC6 = (android.support.constraint.ConstraintLayout) findViewById(R.id.creditcard6);
-        mLyeoutC7 = (android.support.constraint.ConstraintLayout) findViewById(R.id.creditcard7);
-        mLyeoutC8 = (android.support.constraint.ConstraintLayout) findViewById(R.id.creditcard8);
-        mLyeoutC9 = (android.support.constraint.ConstraintLayout) findViewById(R.id.creditcard9);
-        mLyeoutC10 = (android.support.constraint.ConstraintLayout) findViewById(R.id.creditcard10);
-
-        mTBtnC1 = (ToggleButton) findViewById(R.id.tBtnC1);
-        mTBtnC2 = (ToggleButton) findViewById(R.id.tBtnC2);
-        mTBtnC3 = (ToggleButton) findViewById(R.id.tBtnC3);
-        mTBtnC4 = (ToggleButton) findViewById(R.id.tBtnC4);
-        mTBtnC5 = (ToggleButton) findViewById(R.id.tBtnC5);
-        mTBtnC6 = (ToggleButton) findViewById(R.id.tBtnC6);
-        mTBtnC7 = (ToggleButton) findViewById(R.id.tBtnC7);
-        mTBtnC8 = (ToggleButton) findViewById(R.id.tBtnC8);
-        mTBtnC9 = (ToggleButton) findViewById(R.id.tBtnC9);
-        mTBtnC10 = (ToggleButton) findViewById(R.id.tBtnC10);
-
-        mLvCreditCard = (ListView) findViewById(R.id.lvCreditCard);
-        mLvCreditCard.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override   //點選 ListView 清單的動作
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                index = i;  //取索引值
-                tBtnindex = i;  //取ToggleButton判斷式用的值
-                mEdtNewCreditCard.setText(((TextView) view).getText()); //取值放入edt
-                openAndCloseButton();   //改變 更新、與刪除鈕的功能
-            }
-        });
     }
 
     //未做過項目更新，則取得預設值

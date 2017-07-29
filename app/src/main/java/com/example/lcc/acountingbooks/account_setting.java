@@ -14,15 +14,19 @@ public class account_setting extends AppCompatActivity {
         getSupportActionBar().hide();
     }
 
+    public void IndexView(View view){
+        startActivity(new Intent(this, account_setting_indexview.class));
+    }
+
     public void IncomePayItemSetting(View view){
-        startActivity(new Intent(this,account_setting_incomepay.class));
+        startActivity(new Intent(this, account_setting_incomepay.class));
     }
 
     public void CreditCardSetting(View view){
         startActivity(new Intent(this, account_setting_creditcard.class));
     }
 
-    public void infomationSetting(View view){
-//        startActivity(new Intent(this, ));
+    public void ExpenseQuota(View view){
+        startActivity(new Intent(this, account_setting_ExpenseQuota.class));
     }
 }

@@ -1,6 +1,7 @@
 package com.example.lcc.acountingbooks;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -8,6 +9,8 @@ import android.support.constraint.ConstraintLayout;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.DatePicker;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.PieChart;
@@ -20,6 +23,8 @@ import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -37,6 +42,8 @@ public class account_IncomeChart extends Activity {
     private MySQLiteOpenHelper helper = MySQLiteOpenHelper.getInstance(this);
     Cursor cur;
     Calendar c = Calendar.getInstance();
+    TextView txvDate;
+    String[] chartcolor = {"#0000E3","#921AFF","#FF8000","#FF2D2D","#00CACA","#FF8000","#7373B9","#A6A600"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +51,46 @@ public class account_IncomeChart extends Activity {
         setContentView(R.layout.account_income_chart);
         //layout = (ConstraintLayout)findViewById(R.id.mainLayout);
         toast = Toast.makeText(this,"",Toast.LENGTH_SHORT);
-
-        getDate();
+        txvDate = (TextView)findViewById(R.id.txvIncomedate) ;
+        getDate();setChart();
 
 
     }
+
+    public void setQuery(View v){
+        new DatePickerDialog(this,dateSetListener,
+                c.get(Calendar.YEAR),
+                c.get(Calendar.MONTH),
+                c.get(Calendar.DAY_OF_MONTH))
+                .show();
+
+    }
+
+    private DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker datePicker, int y, int m, int d) {
+            cur = helper.getReadableDatabase().query(true,TB_NAME,new String[]{"item"},
+                    "year =? and month =? and income =?",new String[]{""+y,""+(m+1),getString(R.string.income)}
+                    ,null,null,null,null);
+            item = new String[cur.getCount()];
+            cur.moveToFirst();
+            for(int i=0;i<cur.getCount();i++){
+                item[i]= cur.getString(0);
+                cur.moveToNext();
+            }
+            money = new int[item.length];
+            for(int j=0;j<item.length;j++){
+                cur = helper.getReadableDatabase().query(TB_NAME,new String[]{"SUM(money)"},
+                        "year = ? and month = ? and item = ?",
+                        new String[]{""+y,""+(m+1),item[j]},"item",null,null);
+                cur.moveToFirst();
+                money[j]= cur.getInt(0);
+            }
+            txvDate.setText(y + getString(R.string.year) + (m+1) + getString(R.string.month));
+            setChart();
+        }
+
+    };
 
     private void getDate(){
         cur = helper.getReadableDatabase().query(true,TB_NAME,new String[]{"item"},"year = ? and income = ?",
@@ -59,6 +101,7 @@ public class account_IncomeChart extends Activity {
             item[i] = cur.getString(0);
             cur.moveToNext();
         }
+        txvDate.setText("");
         money = new int[item.length];
         for (int j =0 ; j < item.length ; j++){
             cur = helper.getReadableDatabase().query(TB_NAME,new String[]{"SUM(money)"},"item = ?",
@@ -66,7 +109,7 @@ public class account_IncomeChart extends Activity {
             cur.moveToFirst();
             money[j] = cur.getInt(0);
         }
-
+        txvDate.setText(R.string.all_date);
         setChart();
     }
 
@@ -79,9 +122,11 @@ public class account_IncomeChart extends Activity {
         for(int i=0;i<money.length;i++){
             pieEntries.add(new PieEntry(money[i],item[i]));
         }
-        for(int c: ColorTemplate.JOYFUL_COLORS){color.add(c);}
+
+        for(String c:chartcolor){color.add(Color.parseColor(c));}
+        /*for(int c: ColorTemplate.JOYFUL_COLORS){color.add(c);}
         for(int c:ColorTemplate.COLORFUL_COLORS){color.add(c);}
-        for(int c:ColorTemplate.LIBERTY_COLORS){color.add(c);}
+        for(int c:ColorTemplate.LIBERTY_COLORS){color.add(c);}*/
 
         PieDataSet dataset = new PieDataSet(pieEntries,"");//放入自定LIST，圖表的名稱
         //dataset.setColors(ColorTemplate.JOYFUL_COLORS);//使用系設預設圖表區塊顏色
@@ -107,7 +152,7 @@ public class account_IncomeChart extends Activity {
         //圓餅圖中間屬性
         chart.setHoleColor(Color.rgb(235, 235, 235));
         chart.setDrawCenterText(true);
-        chart.setCenterText("總收入：\n"+total+"元");
+        chart.setCenterText(getString(R.string.totalincome)+total+getString(R.string.dollar));
         chart.setCenterTextSize(16f);
         chart.setCenterTextColor(Color.RED);
 
@@ -121,7 +166,7 @@ public class account_IncomeChart extends Activity {
         legend.setDirection(Legend.LegendDirection.LEFT_TO_RIGHT);
         //設定字體顏色及圖塊樣式(預設為方塊)
         legend.setTextSize(20f);
-        legend.setTextColor(Color.WHITE);
+        legend.setTextColor(Color.parseColor("#5B5B5B"));
         legend.setForm(Legend.LegendForm.CIRCLE);
 
         chart.invalidate();//刷新圖表
