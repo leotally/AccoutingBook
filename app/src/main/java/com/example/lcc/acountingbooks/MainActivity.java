@@ -3,10 +3,12 @@ package com.example.lcc.acountingbooks;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ScrollView;
@@ -21,12 +23,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     static final String CreditCardName = "CreditCard";    //信用卡項目資料檔名稱
     static final String ExpenseQuotaName = "ExpenseQuota";  //每月警示資料檔名稱
     static final String IndexViewName = "IndexView";    //首頁樣式資料檔名稱
+    static final String PaymentDayName = "PaymentDay";    //繳費日項目資料檔名稱
     static final String [] Day_Information = new String []{"item","money","info"};
     TextView mThisYearPay, mThisYearIncome, mThisYearTotalView,
             mThisMonthPay, mThisMonthIncome,mThisMonthTotalView;
     Long mThisYearTotalPay, mThisYearTotalIncome, mThisYearTotal,
             mThisMonthTotalPay,mThisMonthTotalIncome,mThisMonthTotal;
-    String SMS,EQS,PDS,CCS;
+    String SMS,EQS,PDS,CCS,PD;
+    String [] billname;
+    int [] paymentday;
+
 
     MySQLiteOpenHelper helper;
     Cursor cursor,cursor1;
@@ -60,7 +66,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageView mIvRed,mIvGreen,mIvYellow;
     TextView mExpenseQuotaMonth;
 
-    android.support.constraint.ConstraintLayout mSumOfMoney,mExpenseQuota,mPayOfDay,mCreditCard;
+    android.support.constraint.ConstraintLayout mSumOfMoney,mExpenseQuota,mPayOfDay,mCreditCard,mPaymentDay;
+
+    ListView mLvPaymentDay;
 
 
     @Override
@@ -76,28 +84,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         thisYearTotalPay();
         thisYearTotalIncome();
         thisYearTotal();
-        //----顯示本年度收入、支出與總合的方法----//
 
         //----顯示本年度當月收入、支出與總合的方法----//
         thisMonthPay();
         thisMonthIncome();
         thisMonthTotal();
-        //----顯示本年度當月收入、支出與總合的方法----//
 
-        //----顯本每日消費資訊----//
+        //----顯本本日消費資訊----//
         PayOfDay();
-        //----顯本每日消費資訊----//
 
         //----顯示每月消費警示----//
         ExpenseQuotaOfMonth();
-        //----顯示每月消費警示----//
 
         //----首頁欄位顯示樣式----//
         IndexView();
-        //----首頁欄位顯示樣式----//
+
+        //----繳費日資訊----//
+        PaymentDay();
     }
 
     private void myFindView() {
+        //----每年、月收支總計
         mThisYearPay = (TextView) findViewById(R.id.txtThisYearPay);
         mThisYearIncome = (TextView) findViewById(R.id.txtThisYearIncome);
         mThisYearTotalView = (TextView) findViewById(R.id.txtThisYearTatal);
@@ -105,23 +112,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mThisMonthIncome = (TextView) findViewById(R.id.txtThisMonthIncome);
         mThisMonthTotalView = (TextView) findViewById(R.id.txtThisMonthTatal);
 
-        //--以下為首頁顯示欄位所用連結
+        //----以下為首頁顯示欄位所用連結
         mSumOfMoney = (android.support.constraint.ConstraintLayout) findViewById(R.id.SumOfMoney);
         mExpenseQuota = (android.support.constraint.ConstraintLayout) findViewById(R.id.ExpenseQuota);
         mPayOfDay = (android.support.constraint.ConstraintLayout) findViewById(R.id.PayOfDay);
         mCreditCard = (android.support.constraint.ConstraintLayout) findViewById(R.id.CreditCard);
+        mPaymentDay = (android.support.constraint.ConstraintLayout) findViewById(R.id.PaymentDay);
 
-        //--以下為每日消費資訊所用連結
+        //----以下為每日消費資訊所用連結
         mMoneyOfDay = (TextView) findViewById(R.id.MoneyOfDay);
         mNoConsumption = (TextView) findViewById(R.id.noConsumption);
         mInfoOfDay = (ScrollView) findViewById(R.id.infoOfDay);
         mLvOfDay = (ListView) findViewById(R.id.LvOfDay);
 
-        //---以下為每月消費警示所用連結
+        //----以下為每月消費警示所用連結
         mIvRed = (ImageView) findViewById(R.id.red);
         mIvGreen = (ImageView) findViewById(R.id.green);
         mIvYellow = (ImageView) findViewById(R.id.yellow);
         mExpenseQuotaMonth = (TextView) findViewById(R.id.txtExpenseQuotaMonth);
+
+        //----繳費日提示所用連結
+        mLvPaymentDay = (ListView) findViewById(R.id.lvPaymentDay);
 
         //----以下為信用卡提示所用連結
         //-----第一張卡(依欄位順序)
@@ -491,6 +502,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         IndexView();//更新首頁顯示欄位
 
+        PaymentDay();//繳費日資訊
+
         SecondInView(); //使用第二次進入畫面的方法關閉與清除不使用的Layout，並載入資料
     }
 
@@ -847,7 +860,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mThisMonthTotalView.setText("" + (mThisMonthTotalIncome - mThisMonthTotalPay));
     }
 
-    //顯示每日消費資訊的方法
+    //顯示本日消費資訊的方法
     private void PayOfDay(){
         cursor = helper.getReadableDatabase().query(TB_NAME,new String[]{"SUM(money)"},
                 "year = ? and month = ? and day = ? and income = ? ",
@@ -864,6 +877,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mMoneyOfDay.setText(""+PayOfDay);
         cursor.close();
 
+        cursor = helper.getReadableDatabase().rawQuery("",new String[]{});
+
+
         cursor1 = helper.getReadableDatabase().query(TB_NAME,new String[]{"_id,item,money,info"},
                 "year = ? and month = ? and day = ? and income = ? ",
                 new String[]{""+c.get(Calendar.YEAR),""+(c.get(Calendar.MONTH)+1),
@@ -875,7 +891,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }else{
             mNoConsumption.setVisibility(View.GONE);
             mInfoOfDay.setVisibility(View.VISIBLE);
-            SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,R.layout.info_of_day_listview,
+            SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,R.layout.listview_info_of_day,
                     cursor1, Day_Information, new int[]{R.id.dItem,R.id.dMoney,R.id.dInfo});
             mLvOfDay.setAdapter(adapter);
         }
@@ -922,6 +938,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         EQS = getDate.getString("EQS","true");
         PDS = getDate.getString("PDS","true");
         CCS = getDate.getString("CCS","true");
+        PD = getDate.getString("PD","true");
 
         if (SMS.length() == 4){
             mSumOfMoney.setVisibility(View.VISIBLE);
@@ -945,6 +962,75 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             mCreditCard.setVisibility(View.VISIBLE);
         } else {
             mCreditCard.setVisibility(View.GONE);
+        }
+
+        if (PD.length() == 4){
+            mPaymentDay.setVisibility(View.VISIBLE);
+        } else {
+            mPaymentDay.setVisibility(View.GONE);
+        }
+    }
+
+    //繳費日提示的方法
+    private void PaymentDay(){
+        SharedPreferences getDate = getSharedPreferences(PaymentDayName,MODE_PRIVATE);
+        int PaymentDayKey = getDate.getInt("PDKey", -1);
+        int j = 0;
+        ArrayList<String> BillNameList = new ArrayList<>();
+        ArrayList<Integer> PaymentDayList = new ArrayList<>();
+        for (int a = PaymentDayKey; a >= 0; a--, j++) {
+            String nameKey = "PDName" + j;
+            String dayKey = "PDDay" + j;
+            BillNameList.add(getDate.getString(nameKey, null));
+            PaymentDayList.add(getDate.getInt(dayKey, 0));
+        }
+        if (BillNameList.size() > 0 ){
+            billname = new String[BillNameList.size()];
+            for (int a = 0 ; a < BillNameList.size() ; a++){
+                billname[a] = BillNameList.get(a);
+            }
+            paymentday = new int [PaymentDayList.size()];
+            for (int b = 0 ; b < PaymentDayList.size() ; b++){
+                paymentday[b] = PaymentDayList.get(b);
+            }
+            MyAdapter adapter = new MyAdapter(this);
+            mLvPaymentDay.setAdapter(adapter);
+        }
+    }
+
+    //自訂Adapter將資料載入ListView
+    class MyAdapter extends BaseAdapter {
+        LayoutInflater myInflater;
+
+        public MyAdapter(MainActivity m) {
+            myInflater = LayoutInflater.from(m);
+        }
+
+        @Override
+        public int getCount() {
+            return billname.length;
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return billname[position];
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View view, ViewGroup viewGroup) {
+            view = myInflater.inflate(R.layout.listview_payment_day_setting,null);
+
+            TextView mTxtName = (TextView) view.findViewById(R.id.name);
+            TextView mTxtDay = (TextView) view.findViewById(R.id.day);
+
+            mTxtName.setText(billname[position]);
+            mTxtDay.setText(""+paymentday[position]);
+            return view;
         }
     }
 

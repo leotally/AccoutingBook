@@ -53,7 +53,12 @@
         <activity
             android:name=".account_setting_ExpenseQuota"
             android:screenOrientation="portrait" />
-        <activity android:name=".account_setting_indexview"></activity>
+        <activity
+            android:name=".account_setting_indexview"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".account_setting_paymentday"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

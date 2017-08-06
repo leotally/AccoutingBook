@@ -93,7 +93,7 @@ public class account_information_list extends AppCompatActivity {
     private void getAllDate(){
         cur = helper.getReadableDatabase().query(TB_NAME, null, null, null, null, null, "year,month,day");
         adapter = new SimpleCursorAdapter(this,    //將游標內資料載內Adapter
-                R.layout.infomation_listview, cur,
+                R.layout.listview_infomation, cur,
                 expense_data,
                 new int[]{R.id.year, R.id.month, R.id.day, R.id.incomepay, R.id.item, R.id.paymentMethods, R.id.money, R.id.info});
         mLvInfo.setAdapter(adapter);    //以ListView秀出Adapter內的資料

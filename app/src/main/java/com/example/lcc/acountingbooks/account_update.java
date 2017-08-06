@@ -26,8 +26,6 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import javax.crypto.MacSpi;
-
 public class account_update extends AppCompatActivity
         implements View.OnClickListener,DatePickerDialog.OnDateSetListener {    //實作監聽日期交談事件的介面
 
@@ -167,7 +165,7 @@ public class account_update extends AppCompatActivity
                 "_id=?", new String[]{"" + _id}, null, null, null);
 
         adapter = new SimpleCursorAdapter(this,    //將游標內資料載內Adapter
-                R.layout.infomation_listview, cur,
+                R.layout.listview_infomation, cur,
                 expense_data,
                 new int[]{R.id.year, R.id.month, R.id.day, R.id.incomepay, R.id.item, R.id.paymentMethods, R.id.money, R.id.info});
         BeforeUpdating.setAdapter(adapter);    //以ListView秀出Adapter內的資料
@@ -357,7 +355,7 @@ public class account_update extends AppCompatActivity
                 "_id=?", new String[]{"" + _id}, null, null, null);
 
         adapter2 = new SimpleCursorAdapter(this,    //將游標內資料載內Adapter
-                R.layout.infomation_listview, cur2,
+                R.layout.listview_infomation, cur2,
                 expense_data,
                 new int[]{R.id.year, R.id.month, R.id.day, R.id.incomepay, R.id.item, R.id.paymentMethods, R.id.money, R.id.info});
         Updated.setAdapter(adapter2);    //以ListView秀出Adapter內的資料

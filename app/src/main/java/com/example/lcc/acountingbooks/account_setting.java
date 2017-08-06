@@ -29,4 +29,8 @@ public class account_setting extends AppCompatActivity {
     public void ExpenseQuota(View view){
         startActivity(new Intent(this, account_setting_ExpenseQuota.class));
     }
+
+    public void PaymentDay(View view){
+        startActivity(new Intent(this, account_setting_paymentday.class));
+    }
 }

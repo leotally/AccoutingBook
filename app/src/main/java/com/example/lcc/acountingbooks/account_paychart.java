@@ -106,7 +106,6 @@ public class account_paychart extends Activity {
         }
         txvdate.setText("");
         money = new int[item.length];//設定金額陣列數量與項目數量同步
-        int z=0;
         for(int j=0;j<item.length;j++){
             cur = helper.getReadableDatabase().query(
                     TB_NAME,new String[]{"SUM(money)"},"item=?",new String[]{item[j]},"item",null,null);

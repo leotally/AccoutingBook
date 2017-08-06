@@ -85,13 +85,34 @@
     <string name="thisMonthPayTotal">支出總額：</string>
     <string name="monthExpensequota">每月消費警示</string>
     <string name="Balance">餘額$：</string>
-    <string name="everydayInfo">每日消費明細</string>
+    <string name="everydayInfo">本日消費明細</string>
     <string name="consumptionNotYet">本日尚無消費記錄</string>
     <string name="Calendar">行事曆</string>
     <string name="searchInfo">查詢帳本</string>
     <string name="save">儲存</string>
     <string name="infoTrue">true</string>
     <string name="infoFalse">false</string>
+    <string name="PaymentDay">繳費日提醒</string>
+    <string name="IndexViewSetting">自訂首頁顯示欄位</string>
+    <string name="IncomePayItemSetting">自訂收支項目</string>
+    <string name="CreditCardSetting">信用卡資訊設定</string>
+    <string name="ExpenseQuotaSetting">每月警示額度設定</string>
+    <string name="PaymentDaySetting">自訂繳款日提醒</string>
+    <string name="incomeItemSetting">自訂收入項目</string>
+    <string name="add">新增</string>
+    <string name="return_default">返回預設</string>
+    <string name="payItemSetting">自訂支出項目</string>
+    <string name="monthOfDay">1-31</string>
+    <string name="BillingName">帳單名稱：</string>
+    <string name="billingName">自訂帳單名稱</string>
+    <string name="pleaseEnterBillName">請輸入帳單名稱</string>
+    <string name="pleaseEnter">請輸入</string>
+    <string name="finalPaymentDay">最後繳款日：</string>
+    <string name="SumOfMoneySwitch">每年、月收支總計</string>
+    <string name="ExpenseQuotaSwitch">每月消費金額警示</string>
+    <string name="PayOfDaySwitch">每日消費明細</string>
+    <string name="CreditCardSwitch">信用卡消費警示</string>
+    <string name="PaymentDaySwitch">繳費日提示</string>
 
     //Accounting Note用的字串陣列
     <string-array name="expense_item">

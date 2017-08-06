@@ -53,7 +53,7 @@
             android:layout_marginTop="8dp"
             android:background="#af1185aa"
             android:gravity="center"
-            android:text="自訂收入項目"
+            android:text="@string/incomeItemSetting"
             android:textColor="@color/common_google_signin_btn_text_dark_default"
             android:textSize="16sp"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -86,7 +86,7 @@
                     android:layout_weight="1"
                     android:elevation="0dp"
                     android:onClick="addI"
-                    android:text="新增" />
+                    android:text="@string/add" />
 
             </LinearLayout>
 
@@ -101,7 +101,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:onClick="deleteI"
-                    android:text="刪除" />
+                    android:text="@string/delete" />
 
                 <Button
                     android:id="@+id/btnUpdateI"
@@ -109,7 +109,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:onClick="updateI"
-                    android:text="更新" />
+                    android:text="@string/update" />
             </LinearLayout>
 
             <LinearLayout
@@ -123,7 +123,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:onClick="DefaultI"
-                    android:text="返回預設" />
+                    android:text="@string/return_default" />
             </LinearLayout>
         </LinearLayout>
 
@@ -204,7 +204,7 @@
             android:layout_marginTop="8dp"
             android:background="#af1185aa"
             android:gravity="center"
-            android:text="自訂支出項目"
+            android:text="@string/payItemSetting"
             android:textColor="@color/common_google_signin_btn_text_dark_default"
             android:textSize="16sp"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -237,7 +237,7 @@
                     android:layout_weight="1"
                     android:elevation="0dp"
                     android:onClick="addP"
-                    android:text="新增" />
+                    android:text="@string/add" />
 
             </LinearLayout>
 
@@ -252,7 +252,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:onClick="deleteP"
-                    android:text="刪除" />
+                    android:text="@string/delete" />
 
                 <Button
                     android:id="@+id/btnUpdateP"
@@ -260,7 +260,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:onClick="updateP"
-                    android:text="更新" />
+                    android:text="@string/update" />
             </LinearLayout>
 
             <LinearLayout
@@ -274,7 +274,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:onClick="DefaultP"
-                    android:text="返回預設" />
+                    android:text="@string/return_default" />
             </LinearLayout>
         </LinearLayout>
 

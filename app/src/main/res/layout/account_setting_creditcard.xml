@@ -75,7 +75,7 @@
                     android:layout_weight="1"
                     android:elevation="0dp"
                     android:onClick="add"
-                    android:text="新增" />
+                    android:text="@string/add" />
 
             </LinearLayout>
 
@@ -90,7 +90,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:onClick="delete"
-                    android:text="刪除" />
+                    android:text="@string/delete" />
 
                 <Button
                     android:id="@+id/btnUpdateI"
@@ -98,7 +98,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:onClick="update"
-                    android:text="更新" />
+                    android:text="@string/update" />
             </LinearLayout>
 
             <LinearLayout
@@ -112,7 +112,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:onClick="Default"
-                    android:text="返回預設" />
+                    android:text="@string/return_default" />
             </LinearLayout>
         </LinearLayout>
 

@@ -10,8 +10,8 @@ import android.widget.Toast;
 public class account_setting_indexview extends AppCompatActivity {
     static final String IndexViewName = "IndexView";
     SharedPreferences IndexView,getDate;
-    Switch SumOfMoneySwitch,ExpenseQuotaSwitch,PayOfDaySwitch,CreditCardSwitch;
-    String SMS,EQS,PDS,CCS;
+    Switch SumOfMoneySwitch,ExpenseQuotaSwitch,PayOfDaySwitch,CreditCardSwitch,PaymentDaySwitch;
+    String SMS,EQS,PDS,CCS,PD;
     Toast toast;
 
     @Override
@@ -29,6 +29,7 @@ public class account_setting_indexview extends AppCompatActivity {
         ExpenseQuotaSwitch = (Switch) findViewById(R.id.ExpenseQuotaSwitch);
         PayOfDaySwitch = (Switch) findViewById(R.id.PayOfDaySwitch);
         CreditCardSwitch = (Switch) findViewById(R.id.CreditCardSwitch);
+        PaymentDaySwitch = (Switch) findViewById(R.id.PaymentDaySwitch);
     }
 
     private void LoadingDate(){
@@ -37,10 +38,12 @@ public class account_setting_indexview extends AppCompatActivity {
         EQS = getDate.getString("EQS","true");
         PDS = getDate.getString("PDS","true");
         CCS = getDate.getString("CCS","true");
+        PD = getDate.getString("PD","true");
         SumOfMoneySwitch.setChecked(Boolean.parseBoolean(SMS));
         ExpenseQuotaSwitch.setChecked(Boolean.parseBoolean(EQS));
         PayOfDaySwitch.setChecked(Boolean.parseBoolean(PDS));
         CreditCardSwitch.setChecked(Boolean.parseBoolean(CCS));
+        PaymentDaySwitch.setChecked(Boolean.parseBoolean(PD));
     }
 
     public void save(View view){
@@ -51,6 +54,7 @@ public class account_setting_indexview extends AppCompatActivity {
         editor.putString("EQS",EQS);
         editor.putString("PDS",PDS);
         editor.putString("CCS",CCS);
+        editor.putString("PD",PD);
         editor.commit();
         toast.setText(R.string.dateSaved);
         toast.show();
@@ -79,6 +83,12 @@ public class account_setting_indexview extends AppCompatActivity {
             CCS = getString(R.string.infoTrue);
         } else {
             CCS = getString(R.string.infoFalse);
+        }
+
+        if (PaymentDaySwitch.isChecked() == true){
+            PD = getString(R.string.infoTrue);
+        } else {
+            PD = getString(R.string.infoFalse);
         }
     }
 }
