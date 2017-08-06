@@ -263,14 +263,17 @@ public class account_setting_creditcard extends AppCompatActivity {
             toast.setText("請輸入信用卡名稱");
             toast.show();
         } else {
-            CreditCardList.add(mEdtNewCreditCard.getText().toString());   //新增輸入值在"收入項目列表 "
+            CreditCardList.add(mEdtNewCreditCard.getText().toString());
+            //新增輸入值在"收入項目列表 "
         }
         setListView(CreditCardList);    //顯示新的"收入項目列表"
         index = -1; //改變判斷條件
         openAndCloseButton();   //改變 更新、與刪除鈕的功能
         mEdtNewCreditCard.setText(null);    //將輸入項目的EditText清空
-        setCreditCardInfoName();     //依ListView上項目的名稱，戴入至訊息欄上的TextView
-        setCreditCardInfoLayoutVisible();   //依ListView的長度來打開設定資訊的Layout
+        setCreditCardInfoName();
+        //依ListView上項目的名稱，戴入至訊息欄上的TextView
+        setCreditCardInfoLayoutVisible();
+        //依ListView的長度來打開設定資訊的Layout
     }
 
     //按下更新鈕
